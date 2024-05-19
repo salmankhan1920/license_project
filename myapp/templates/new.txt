@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create License Key</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        input[type="text"] {
+            padding: 8px;
+            font-size: 16px;
+            width: 200px;
+        }
+
+        button {
+            padding: 8px 16px;
+            font-size: 16px;
+            margin-left: 10px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Create License Key</h1>
+        <label for="licenseKeyNameInput">License Key Name:</label>
+        <input type="text" id="licenseKeyNameInput" placeholder="Enter license key name">
+        <br>
+        <label for="licenseKeyInput">License Key:</label>
+        <input type="text" id="licenseKeyInput" placeholder="Enter license key">
+        <button id="createButton">Create</button>
+        <div id="message"></div>
+        <input type="text" id="searchInput" placeholder="Search by name or key">
+        <button id="searchButton">Search</button>
+        <ul id="licenseKeyList"></ul>
+        <div id="pagination"></div>
+    </div>
+
+    <script>
+
+        let currentPage = 1;
+        const itemsPerPage = 10;
+
+        function searchLicenseKeys() {
+            const searchTerm = document.getElementById('searchInput').value.trim().toLowerCase();
+            fetch(`/get-license-keys/?search=${searchTerm}`)
+                .then(response => response.json())
+                .then(data => {
+                    displayLicenseKeys(data.license_keys);
+                    displayPagination(data.total_pages);
+                })
+                .catch(error => {
+                    console.error('Error fetching license keys:', error);
+                });
+        }
+
+        const searchButton = document.getElementById('searchButton');
+        searchButton.addEventListener('click', searchLicenseKeys);
+
+
+function displayLicenseKeys(licenseKeys) {
+    const licenseKeyList = document.getElementById('licenseKeyList');
+    licenseKeyList.innerHTML = '';
+
+    licenseKeys.forEach(key => {
+        const listItem = document.createElement('li');
+        const keyText = `${key.name} (Key: ${key.key}, Created at: ${key.created_at})`;
+        listItem.textContent = keyText;
+
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Delete';
+        deleteButton.addEventListener('click', () => {
+            deleteLicenseKey(key.id, key.name); // Pass the license key name as the second argument
+        });
+
+        listItem.appendChild(deleteButton);
+        licenseKeyList.appendChild(listItem);
+    });
+}
+
+
+
+
+function displayPagination(totalPages) {
+    const paginationDiv = document.getElementById('pagination');
+    paginationDiv.innerHTML = '';
+
+    for (let i = 1; i <= totalPages; i++) {
+        const pageButton = document.createElement('button');
+        pageButton.textContent = i;
+
+        if (i === currentPage) {
+            pageButton.classList.add('active');
+        }
+
+        pageButton.addEventListener('click', () => {
+            currentPage = i;
+            fetchLicenseKeys();
+            displayPagination(totalPages); // Update the pagination display
+        });
+
+        paginationDiv.appendChild(pageButton);
+    }
+}
+
+
+
+//     function deleteLicenseKey(licenseKeyId, licenseKeyName) {
+//     const confirmDelete = confirm(`Are you sure you want to delete the license key "${licenseKeyName}"?`);
+//     if (confirmDelete) {
+//         const csrfToken = getCookie('csrftoken');
+//         fetch(`/delete-license-key/${licenseKeyId}/`, {
+//             method: 'DELETE',
+//             headers: {
+//                 'Content-Type': 'application/json',
+//                 'X-CSRFToken': csrfToken
+//             }
+//         })
+//         .then(response => response.json())
+//         .then(data => {
+//             if (data.success) {
+//                 messageDiv.textContent = 'License key deleted successfully!';
+//                 // Fetch and display the updated list of license keys
+//                 fetch('/get-license-keys/')
+//                     .then(response => response.json())
+//                     .then(licenseKeys => {
+//                         displayLicenseKeys(licenseKeys);
+//                     })
+//                     .catch(error => {
+//                         console.error('Error fetching license keys:', error);
+//                     });
+//             } else {
+//                 messageDiv.textContent = `Error: ${data.error}`;
+//             }
+//         })
+//         .catch(error => {
+//             console.error('Error deleting license key:', error);
+//             messageDiv.textContent = 'An error occurred while deleting the license key.';
+//         });
+//     }
+// }
+
+
+function deleteLicenseKey(licenseKeyId, licenseKeyName) {
+    const confirmDelete = confirm(`Are you sure you want to delete the license key "${licenseKeyName}"?`);
+    if (confirmDelete) {
+        const csrfToken = getCookie('csrftoken');
+        fetch(`/delete-license-key/${licenseKeyId}/`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrfToken
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                messageDiv.textContent = 'License key deleted successfully!';
+                // Fetch and display the updated list of license keys
+                fetchLicenseKeys()
+            } else {
+                messageDiv.textContent = `Error: ${data.error}`;
+            }
+        })
+        .catch(error => {
+            console.error('Error deleting license key:', error);
+            messageDiv.textContent = 'An error occurred while deleting the license key.';
+        });
+    }
+}
+
+
+
+function fetchLicenseKeys() {
+            fetch(`/get-license-keys/?page=${currentPage}`)
+                .then(response => response.json())
+                .then(data => {
+                    displayLicenseKeys(data.license_keys);
+                    displayPagination(data.total_pages);
+                })
+                .catch(error => {
+                    console.error('Error fetching license keys:', error);
+                });
+        }
+
+        fetchLicenseKeys();
+
+
+    function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+const createButton = document.getElementById('createButton');
+const licenseKeyInput = document.getElementById('licenseKeyInput');
+const messageDiv = document.getElementById('message');
+createButton.addEventListener('click', () => {
+    const licenseKeyName = document.getElementById('licenseKeyNameInput').value.trim();
+    //const licenseKey = licenseKeyInput.value.trim();
+    const licenseKey = licenseKeyInput.value.trim().replace(/\s/g, ''); // Remove spaces from the license key
+    if (licenseKeyName && licenseKey) {
+        const csrfToken = getCookie('csrftoken');
+        fetch('/create-license-key/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrfToken
+            },
+            body: JSON.stringify({ name: licenseKeyName, key: licenseKey })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                messageDiv.textContent = `License key "${licenseKey}" created successfully!`;
+                document.getElementById('licenseKeyNameInput').value = '';
+                licenseKeyInput.value = '';
+               // displayLicenseKeys(data.license_keys);
+                fetchLicenseKeys()
+            } else {
+                messageDiv.textContent = `Error: ${data.error}`;
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            messageDiv.textContent = 'An error occurred while creating the license key.';
+        });
+    } else {
+        messageDiv.textContent = 'Please enter a license key name and key';
+    }
+});
+
+
+    </script>
+</body>
+</html>

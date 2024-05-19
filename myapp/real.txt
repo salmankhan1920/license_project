@@ -1,0 +1,58 @@
+// Function to read the license key from a file
+function readLicenseKeyFromFile() {
+  return new Promise((resolve, reject) => {
+    const fileInput = document.createElement('input');
+    fileInput.type = 'file';
+
+    fileInput.addEventListener('change', (event) => {
+      const file = event.target.files[0];
+      const reader = new FileReader();
+
+      reader.onload = () => {
+        let licenseKey = reader.result;
+        licenseKey = licenseKey.trim(); // Remove leading and trailing whitespace
+        console.log('License Key:', licenseKey); // Print the license key
+        resolve(licenseKey);
+      };
+
+      reader.onerror = () => {
+        reject('Error reading the file');
+      };
+
+      reader.readAsText(file);
+    });
+
+    fileInput.click();
+  });
+}
+
+// Prompt the user to select a file and read the license key
+readLicenseKeyFromFile()
+  .then(licenseKey => {
+    // Now, send the POST request with the license key
+    fetch('http://127.0.0.1:8000/verify-license/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ licenseKey })
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.valid) {
+        console.log('License key is valid');
+        // Execute the received JavaScript code if the license key is valid
+        eval(data.code);
+      } else {
+        console.log('Invalid license key');
+      }
+    })
+    .catch(error => {
+      console.error('Error verifying license key:', error);
+    });
+  })
+  .catch(error => {
+    console.error('Error reading the license key from the file:', error);
+  });
+
+

@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>License Key Manager</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        li {
+            background-color: #f9f9f9;
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .pagination button {
+            margin: 0 5px;
+        }
+
+        .active {
+            background-color: #333;
+        }
+
+        nav {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+}
+
+.dropbtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    right: 0;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+}
+
+.delete-button {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+.delete-button:hover {
+    background-color: #c82333;
+}
+
+
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="dropdown">
+            <button class="dropbtn">Menu</button>
+            <div class="dropdown-content">
+                <a href="{% url 'show_logs_html' %}">Logs</a>
+                <a href="{% url 'logout_url' %}">Logout</a>
+                
+            </div>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <h1>License Key Manager</h1>
+        <input type="text" id="licenseKeyNameInput" placeholder="Enter license key name">
+        <input type="text" id="licenseKeyInput" placeholder="Enter license key">
+        <button id="createButton">Create</button>
+        <input type="text" id="searchInput" placeholder="Search by name or key">
+        <button id="searchButton">Search</button>
+        <div id="message"></div>
+        <ul id="licenseKeyList"></ul>
+        <div class="pagination" id="pagination"></div>
+    </div>
+
+    <script>
+
+
+    // Close the dropdown menu if the user clicks outside of it
+    window.onclick = function(event) {
+        if (!event.target.matches('.dropbtn')) {
+            var dropdowns = document.getElementsByClassName("dropdown-content");
+            var i;
+            for (i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                }
+            }
+        }
+    }
+
+
+
+        let currentPage = 1;
+        const itemsPerPage = 10;
+
+        function searchLicenseKeys() {
+            const searchTerm = document.getElementById('searchInput').value.trim().toLowerCase();
+            fetch(`/get-license-keys/?search=${searchTerm}`)
+                .then(response => response.json())
+                .then(data => {
+                    displayLicenseKeys(data.license_keys);
+                    displayPagination(data.total_pages);
+                })
+                .catch(error => {
+                    console.error('Error fetching license keys:', error);
+                });
+        }
+
+        const searchButton = document.getElementById('searchButton');
+        searchButton.addEventListener('click', searchLicenseKeys);
+
+
+function displayLicenseKeys(licenseKeys) {
+    const licenseKeyList = document.getElementById('licenseKeyList');
+    licenseKeyList.innerHTML = '';
+
+    licenseKeys.forEach(key => {
+        const listItem = document.createElement('li');
+        const keyText = `${key.name} (Key: ${key.key}, Created at: ${key.created_at})`;
+        listItem.textContent = keyText;
+
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Delete';
+        deleteButton.classList.add('delete-button'); // Add the delete-button class
+        deleteButton.addEventListener('click', () => {
+            deleteLicenseKey(key.id, key.name); // Pass the license key name as the second argument
+        });
+
+        listItem.appendChild(deleteButton);
+        licenseKeyList.appendChild(listItem);
+    });
+}
+
+
+
+
+function displayPagination(totalPages) {
+    const paginationDiv = document.getElementById('pagination');
+    paginationDiv.innerHTML = '';
+
+    for (let i = 1; i <= totalPages; i++) {
+        const pageButton = document.createElement('button');
+        pageButton.textContent = i;
+
+        if (i === currentPage) {
+            pageButton.classList.add('active');
+        }
+
+        pageButton.addEventListener('click', () => {
+            currentPage = i;
+            fetchLicenseKeys();
+            displayPagination(totalPages); // Update the pagination display
+        });
+
+        paginationDiv.appendChild(pageButton);
+    }
+}
+
+
+
+//     function deleteLicenseKey(licenseKeyId, licenseKeyName) {
+//     const confirmDelete = confirm(`Are you sure you want to delete the license key "${licenseKeyName}"?`);
+//     if (confirmDelete) {
+//         const csrfToken = getCookie('csrftoken');
+//         fetch(`/delete-license-key/${licenseKeyId}/`, {
+//             method: 'DELETE',
+//             headers: {
+//                 'Content-Type': 'application/json',
+//                 'X-CSRFToken': csrfToken
+//             }
+//         })
+//         .then(response => response.json())
+//         .then(data => {
+//             if (data.success) {
+//                 messageDiv.textContent = 'License key deleted successfully!';
+//                 // Fetch and display the updated list of license keys
+//                 fetch('/get-license-keys/')
+//                     .then(response => response.json())
+//                     .then(licenseKeys => {
+//                         displayLicenseKeys(licenseKeys);
+//                     })
+//                     .catch(error => {
+//                         console.error('Error fetching license keys:', error);
+//                     });
+//             } else {
+//                 messageDiv.textContent = `Error: ${data.error}`;
+//             }
+//         })
+//         .catch(error => {
+//             console.error('Error deleting license key:', error);
+//             messageDiv.textContent = 'An error occurred while deleting the license key.';
+//         });
+//     }
+// }
+
+
+function deleteLicenseKey(licenseKeyId, licenseKeyName) {
+    const confirmDelete = confirm(`Are you sure you want to delete the license key "${licenseKeyName}"?`);
+    if (confirmDelete) {
+        const csrfToken = getCookie('csrftoken');
+        fetch(`/delete-license-key/${licenseKeyId}/`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrfToken
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                messageDiv.textContent = 'License key deleted successfully!';
+                // Fetch and display the updated list of license keys
+                fetchLicenseKeys()
+            } else {
+                messageDiv.textContent = `Error: ${data.error}`;
+            }
+        })
+        .catch(error => {
+            console.error('Error deleting license key:', error);
+            messageDiv.textContent = 'An error occurred while deleting the license key.';
+        });
+    }
+}
+
+
+
+function fetchLicenseKeys() {
+            fetch(`/get-license-keys/?page=${currentPage}`)
+                .then(response => response.json())
+                .then(data => {
+                    displayLicenseKeys(data.license_keys);
+                    displayPagination(data.total_pages);
+                })
+                .catch(error => {
+                    console.error('Error fetching license keys:', error);
+                });
+        }
+
+        fetchLicenseKeys();
+
+
+    function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+const createButton = document.getElementById('createButton');
+const licenseKeyInput = document.getElementById('licenseKeyInput');
+const messageDiv = document.getElementById('message');
+createButton.addEventListener('click', () => {
+    const licenseKeyName = document.getElementById('licenseKeyNameInput').value.trim();
+    //const licenseKey = licenseKeyInput.value.trim();
+    const licenseKey = licenseKeyInput.value.trim().replace(/\s/g, ''); // Remove spaces from the license key
+    if (licenseKeyName && licenseKey) {
+        const csrfToken = getCookie('csrftoken');
+        fetch('/create-license-key/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrfToken
+            },
+            body: JSON.stringify({ name: licenseKeyName, key: licenseKey })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                messageDiv.textContent = `License key "${licenseKey}" created successfully!`;
+                document.getElementById('licenseKeyNameInput').value = '';
+                licenseKeyInput.value = '';
+               // displayLicenseKeys(data.license_keys);
+                fetchLicenseKeys()
+            } else {
+                messageDiv.textContent = `Error: ${data.error}`;
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            messageDiv.textContent = 'An error occurred while creating the license key.';
+        });
+    } else {
+        messageDiv.textContent = 'Please enter a license key name and key';
+    }
+});
+
+
+    </script>
+</body>
+</html>

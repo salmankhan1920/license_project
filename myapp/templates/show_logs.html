@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>License Key Logs</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        #logContainer {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 5px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            margin-bottom: 20px;
+        }
+
+        .search-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        #searchInput {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 70%;
+        }
+
+        #searchButton {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #searchButton:hover {
+            background-color: #45a049;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .pagination button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        .pagination button:hover {
+            background-color: #45a049;
+        }
+
+        .pagination button.active {
+            background-color: #333;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        nav {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+}
+
+.dropbtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    right: 0;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+}
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="dropdown">
+            <button class="dropbtn">Menu</button>
+            <div class="dropdown-content">
+                <a href="{% url 'home' %}">Home</a>
+                <a href="{% url 'logout_url' %}">Logout</a>
+                
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="container">
+        <h1>License Key Logs</h1>
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Search logs...">
+            <button id="searchButton">Search</button>
+        </div>
+        <div id="logContainer"></div>
+        <div class="pagination" id="pagination"></div>
+    </div>
+
+
+
+    <script>
+function fetchLogs(page = 1) {
+    fetch(`/show-logs/?page=${page}`)
+        .then(response => response.json())
+        .then(data => {
+            const logContainer = document.getElementById('logContainer');
+            logContainer.innerHTML = data.logs.join('<br>');
+
+            // Remove the existing pagination buttons
+            const paginationContainer = document.querySelector('.pagination');
+            if (paginationContainer) {
+                paginationContainer.remove();
+            }
+
+            // Display the new pagination buttons
+            displayPagination(data.total_pages);
+        })
+        .catch(error => {
+            console.error('Error fetching logs:', error);
+        });
+}
+
+// function displayPagination(totalPages) {
+//     const paginationContainer = document.createElement('div');
+//     paginationContainer.classList.add('pagination');
+
+//     for (let i = 1; i <= totalPages; i++) {
+//         const pageButton = document.createElement('button');
+//         pageButton.textContent = i;
+//         pageButton.addEventListener('click', () => {
+//             fetchLogs(i);
+//         });
+//         paginationContainer.appendChild(pageButton);
+//     }
+
+//     const container = document.querySelector('.container');
+//     container.appendChild(paginationContainer);
+// }
+
+function displayPagination(totalPages) {
+    const paginationContainer = document.createElement('div');
+    paginationContainer.classList.add('pagination');
+
+    for (let i = 1; i <= totalPages; i++) {
+        const pageButton = document.createElement('button');
+        pageButton.textContent = i;
+        pageButton.addEventListener('click', () => {
+            fetchLogs(i);
+            // Remove the active class from all buttons
+            const activeButtons = paginationContainer.querySelectorAll('.active');
+            activeButtons.forEach(button => button.classList.remove('active'));
+            // Add the active class to the clicked button
+            pageButton.classList.add('active');
+        });
+        paginationContainer.appendChild(pageButton);
+    }
+
+    const container = document.querySelector('.container');
+    container.appendChild(paginationContainer);
+}
+
+
+
+        function searchLogs() {
+            const searchTerm = document.getElementById('searchInput').value.trim().toLowerCase();
+            const logContainer = document.getElementById('logContainer');
+            const logLines = logContainer.innerHTML.split('<br>');
+
+            if (searchTerm === '') {
+        // If the search field is empty, display all logs
+        fetchLogs();
+        return;
+    }
+
+
+            let filteredLogs = '';
+            let matchFound = false;
+
+            for (let i = 0; i < logLines.length; i++) {
+                const line = logLines[i];
+                if (line.toLowerCase().includes(searchTerm)) {
+                    filteredLogs += line + '<br>';
+                    matchFound = true;
+                }
+            }
+
+            if (matchFound) {
+        logContainer.innerHTML = filteredLogs;
+    } else {
+        logContainer.innerHTML = `No match found for the keyword '${searchTerm}'`;
+    }
+        }
+
+        const searchButton = document.getElementById('searchButton');
+        searchButton.addEventListener('click', searchLogs);
+        searchInput.addEventListener('keyup', function(event) {
+            if (event.key === 'Enter') {
+                searchLogs();
+            }
+        });
+
+
+        // Call the fetchLogs function to display the logs
+        fetchLogs();
+    </script>
+</body>
+</html>
