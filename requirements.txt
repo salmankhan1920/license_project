@@ -1,0 +1,6 @@
+asgiref==3.8.1
+Django==5.0.6
+django-cors-headers==4.3.1
+django-ipware==7.0.1
+python-ipware==3.0.0
+sqlparse==0.5.0
