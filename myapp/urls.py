@@ -15,7 +15,12 @@ urlpatterns = [
      path('show-logs/', views.show_logs, name='show_logs'),
      path('logs/', views.show_logs_html, name='show_logs_html'),
      path('login/' , views.user_login, name='login_url'),
-     path('logout/', views.logout_view, name='logout_url')
+     path('logout/', views.logout_view, name='logout_url'),
+     path('static-files/', views.show_static_files, name='show_static_files'),
+     path('show-static-files/', views.show_static_files, name='show_static_files'),
+     path('delete-file/', views.delete_file, name='delete_file'),
+     path('files', views.files, name='files'),
+     path('upload-static-file/', views.upload_static_file, name='upload_static_file')
 ]
     
 

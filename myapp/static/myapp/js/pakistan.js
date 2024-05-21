@@ -1,8 +1,9 @@
 
+// Enter your leaderboard name
+//let lname = "Master Trade Bro";
 
-
-
-console.log('this is pakistani file')
+// Enter your initial capital
+//let iblafp = 439788;
 
 
 // Change the URL to a new one

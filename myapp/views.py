@@ -22,6 +22,7 @@ import os
 from django.templatetags.static import static
 from django.contrib.staticfiles import finders
 from .obfuscator import obfuscate_code
+from django.conf import settings
 
 
 # Create a logger instance
@@ -323,7 +324,9 @@ def create_license_key(request):
 
 
 def show_logs(request):
-    log_file_path = "logs/license_keys.log"
+    # log_file_path = "logs/license_keys.log"
+    # Construct the log file path using BASE_DIR and os.path.join
+    log_file_path = os.path.join(settings.BASE_DIR, "logs", "license_keys.log")
     try:
         with open(log_file_path, "r") as log_file:
             log_contents = log_file.readlines()
@@ -380,3 +383,107 @@ def user_login(request):
 def logout_view(request):
     logout(request)
     return redirect("login_url")
+
+
+
+
+def show_static_files(request):
+    static_files = []
+    for finder in finders.get_finders():
+        for path, storage in finder.list(["admin"]):
+            if path.endswith(".js"):
+                static_files.append({"path": path, "name": os.path.basename(path)})
+
+    if request.method == "POST":
+        file_to_delete = request.POST.get("file_to_delete")
+        if file_to_delete:
+            for finder in finders.get_finders():
+                for path, storage in finder.list(["adming"]):
+                    if path.endswith(file_to_delete):
+                        file_path = storage.path(path)
+                        try:
+                            os.remove(file_path)
+                            static_files = [
+                                f for f in static_files if f["name"] != file_to_delete
+                            ]
+                            break
+                        except Exception as e:
+                            print(f"Error deleting file: {e}")
+
+    context = {
+        "static_files": static_files,
+    }
+    return render(request, "static_files.html", context)
+
+
+
+
+def show_static_files(request):
+    static_files = []
+    for finder in finders.get_finders():
+        for path, storage in finder.list(["admin"]):
+            if path.endswith(".js"):
+                static_files.append({"path": path, "name": os.path.basename(path)})
+
+    return JsonResponse(static_files, safe=False)
+
+
+
+
+
+def delete_file(request):
+    if request.method == "POST":
+        try:
+            data = json.loads(request.body)
+            file_path = data.get("file_path")
+            print(file_path)  # This should now print the correct file_path value
+            if file_path:
+                for finder in finders.get_finders():
+                    for path, storage in finder.list(["admin"]):
+                        if path == file_path:
+                            file_full_path = storage.path(path)
+                            try:
+                                os.remove(file_full_path)
+                                return JsonResponse({"success": True})
+                            except Exception as e:
+                                return JsonResponse({"success": False, "error": str(e)})
+        except json.JSONDecodeError:
+            return JsonResponse({"success": False, "error": "Invalid JSON data"})
+
+    return JsonResponse({"success": False, "error": "Invalid request method"})
+
+
+def files(request):
+    return render(request, "files.html")
+
+
+
+
+def upload_static_file(request):
+    if request.method == "POST":
+        try:
+            static_file = request.FILES["static_file"]
+            file_name = static_file.name
+
+            # Construct the file path using BASE_DIR and os.path.join
+            static_dir = os.path.join(
+                settings.BASE_DIR, "myapp", "static", "myapp", "js"
+            )
+            print(static_dir)
+            file_path = os.path.join(static_dir, file_name)
+
+            # Create the directory if it doesn't exist
+            os.makedirs(static_dir, exist_ok=True)
+
+            # Save the uploaded file to the static directory
+            with open(file_path, "wb+") as destination:
+                for chunk in static_file.chunks():
+                    destination.write(chunk)
+
+            return JsonResponse(
+                {"success": True, "message": "File uploaded successfully"}
+            )
+        except Exception as e:
+            return JsonResponse({"success": False, "error": str(e)})
+    else:
+        return JsonResponse({"success": False, "error": "Invalid request method"})

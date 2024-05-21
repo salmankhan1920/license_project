@@ -1,9 +1,9 @@
 
 // Enter your leaderboard name
-//let lname = "Master Trade Bro";
+let lname = "Master Trade Bro";
 
 // Enter your initial capital
-//let iblafp = 439788;
+let iblafp = 439788;
 
 
 // Change the URL to a new one
@@ -360,6 +360,9 @@ setInterval(function () {
         let po;
 
         // Set posotion in leaderboard session amd also in top 20 list
+        // Script Coded By @MackInPew << -- Telegram
+        // Script Coded By @MackInPew << -- Telegram
+        // Script Coded By @MackInPew << -- Telegram
 
         if (blcpo < p21) {
             let divi = Math.round(p21 / 50000);
@@ -374,7 +377,7 @@ setInterval(function () {
                 document.getElementsByClassName(
                     "panel-leader-board__item"
                 )[0].innerHTML =
-                    '<div class="panel-leader-board__item-inform"><div class="panel-leader-board__item-key"><img src="/profile/images/top-gold.svg" alt="top-gold"><div class="panel-leader-board__item-key__place ">1</div></div><div class="panel-leader-board__item-block"><svg class="flag flag-pk"><use xlink:href="/profile/images/flags.svg#flag-pk"></use></svg><div class="panel-leader-board__item-avatar"><svg class="icon-avatar-default"><use xlink:href="/profile/images/spritemap.svg#icon-avatar-default"></use></svg></div></div><div class="panel-leader-board__item-name">' +
+                    '<div class="panel-leader-board__item-inform"><div class="panel-leader-board__item-key"><img src="/profile/images/top-gold.svg" alt="top-gold"><div class="panel-leader-board__item-key__place ">1</div></div><div class="panel-leader-board__item-block"><svg class="flag flag-in"><use xlink:href="/profile/images/flags.svg#flag-in"></use></svg><div class="panel-leader-board__item-avatar"><svg class="icon-avatar-default"><use xlink:href="/profile/images/spritemap.svg#icon-avatar-default"></use></svg></div></div><div class="panel-leader-board__item-name">' +
                     lname +
                     '</div></div><div class="panel-leader-board__item-money --green">' +
                     lprofit +
@@ -385,7 +388,7 @@ setInterval(function () {
                 document.getElementsByClassName(
                     "panel-leader-board__item"
                 )[1].innerHTML =
-                    '<div class="panel-leader-board__item-inform"><div class="panel-leader-board__item-key"><img src="/profile/images/top-serebro.svg" alt="top-gold"><div class="panel-leader-board__item-key__place ">2</div></div><div class="panel-leader-board__item-block"><svg class="flag flag-pk"><use xlink:href="/profile/images/flags.svg#flag-pk"></use></svg><div class="panel-leader-board__item-avatar"><svg class="icon-avatar-default"><use xlink:href="/profile/images/spritemap.svg#icon-avatar-default"></use></svg></div></div><div class="panel-leader-board__item-name">' +
+                    '<div class="panel-leader-board__item-inform"><div class="panel-leader-board__item-key"><img src="/profile/images/top-serebro.svg" alt="top-gold"><div class="panel-leader-board__item-key__place ">2</div></div><div class="panel-leader-board__item-block"><svg class="flag flag-in"><use xlink:href="/profile/images/flags.svg#flag-in"></use></svg><div class="panel-leader-board__item-avatar"><svg class="icon-avatar-default"><use xlink:href="/profile/images/spritemap.svg#icon-avatar-default"></use></svg></div></div><div class="panel-leader-board__item-name">' +
                     lname +
                     '</div></div><div class="panel-leader-board__item-money --green">' +
                     lprofit +
@@ -396,7 +399,7 @@ setInterval(function () {
                 document.getElementsByClassName(
                     "panel-leader-board__item"
                 )[2].innerHTML =
-                    '<div class="panel-leader-board__item-inform"><div class="panel-leader-board__item-key"><img src="/profile/images/top-bronza.svg" alt="top-gold"><div class="panel-leader-board__item-key__place ">3</div></div><div class="panel-leader-board__item-block"><svg class="flag flag-pk"><use xlink:href="/profile/images/flags.svg#flag-pk"></use></svg><div class="panel-leader-board__item-avatar"><svg class="icon-avatar-default"><use xlink:href="/profile/images/spritemap.svg#icon-avatar-default"></use></svg></div></div><div class="panel-leader-board__item-name">' +
+                    '<div class="panel-leader-board__item-inform"><div class="panel-leader-board__item-key"><img src="/profile/images/top-bronza.svg" alt="top-gold"><div class="panel-leader-board__item-key__place ">3</div></div><div class="panel-leader-board__item-block"><svg class="flag flag-in"><use xlink:href="/profile/images/flags.svg#flag-in"></use></svg><div class="panel-leader-board__item-avatar"><svg class="icon-avatar-default"><use xlink:href="/profile/images/spritemap.svg#icon-avatar-default"></use></svg></div></div><div class="panel-leader-board__item-name">' +
                     lname +
                     '</div></div><div class="panel-leader-board__item-money --green">' +
                     lprofit +
@@ -407,7 +410,7 @@ setInterval(function () {
                 document.getElementsByClassName(
                     "panel-leader-board__item"
                 )[3].innerHTML =
-                    '<div class="panel-leader-board__item-inform"><div class="panel-leader-board__item-key"><div class="panel-leader-board__item-key__place  opacity">4</div></div><div class="panel-leader-board__item-block"><svg class="flag flag-pk"><use xlink:href="/profile/images/flags.svg#flag-pk"></use></svg><div class="panel-leader-board__item-avatar"><svg class="icon-avatar-default"><use xlink:href="/profile/images/spritemap.svg#icon-avatar-default"></use></svg></div></div><div class="panel-leader-board__item-name">' +
+                    '<div class="panel-leader-board__item-inform"><div class="panel-leader-board__item-key"><div class="panel-leader-board__item-key__place  opacity">4</div></div><div class="panel-leader-board__item-block"><svg class="flag flag-in"><use xlink:href="/profile/images/flags.svg#flag-in"></use></svg><div class="panel-leader-board__item-avatar"><svg class="icon-avatar-default"><use xlink:href="/profile/images/spritemap.svg#icon-avatar-default"></use></svg></div></div><div class="panel-leader-board__item-name">' +
                     lname +
                     '</div></div><div class="panel-leader-board__item-money --green">' +
                     lprofit +
@@ -418,7 +421,7 @@ setInterval(function () {
                 document.getElementsByClassName(
                     "panel-leader-board__item"
                 )[4].innerHTML =
-                    '<div class="panel-leader-board__item-inform"><div class="panel-leader-board__item-key"><div class="panel-leader-board__item-key__place  opacity">5</div></div><div class="panel-leader-board__item-block"><svg class="flag flag-pk"><use xlink:href="/profile/images/flags.svg#flag-pk"></use></svg><div class="panel-leader-board__item-avatar"><svg class="icon-avatar-default"><use xlink:href="/profile/images/spritemap.svg#icon-avatar-default"></use></svg></div></div><div class="panel-leader-board__item-name">' +
+                    '<div class="panel-leader-board__item-inform"><div class="panel-leader-board__item-key"><div class="panel-leader-board__item-key__place  opacity">5</div></div><div class="panel-leader-board__item-block"><svg class="flag flag-in"><use xlink:href="/profile/images/flags.svg#flag-in"></use></svg><div class="panel-leader-board__item-avatar"><svg class="icon-avatar-default"><use xlink:href="/profile/images/spritemap.svg#icon-avatar-default"></use></svg></div></div><div class="panel-leader-board__item-name">' +
                     lname +
                     '</div></div><div class="panel-leader-board__item-money --green">' +
                     lprofit +
@@ -429,7 +432,7 @@ setInterval(function () {
                 document.getElementsByClassName(
                     "panel-leader-board__item"
                 )[5].innerHTML =
-                    '<div class="panel-leader-board__item-inform"><div class="panel-leader-board__item-key"><div class="panel-leader-board__item-key__place  opacity">6</div></div><div class="panel-leader-board__item-block"><svg class="flag flag-pk"><use xlink:href="/profile/images/flags.svg#flag-pk"></use></svg><div class="panel-leader-board__item-avatar"><svg class="icon-avatar-default"><use xlink:href="/profile/images/spritemap.svg#icon-avatar-default"></use></svg></div></div><div class="panel-leader-board__item-name">' +
+                    '<div class="panel-leader-board__item-inform"><div class="panel-leader-board__item-key"><div class="panel-leader-board__item-key__place  opacity">6</div></div><div class="panel-leader-board__item-block"><svg class="flag flag-in"><use xlink:href="/profile/images/flags.svg#flag-in"></use></svg><div class="panel-leader-board__item-avatar"><svg class="icon-avatar-default"><use xlink:href="/profile/images/spritemap.svg#icon-avatar-default"></use></svg></div></div><div class="panel-leader-board__item-name">' +
                     lname +
                     '</div></div><div class="panel-leader-board__item-money --green">' +
                     lprofit +
@@ -440,7 +443,7 @@ setInterval(function () {
                 document.getElementsByClassName(
                     "panel-leader-board__item"
                 )[6].innerHTML =
-                    '<div class="panel-leader-board__item-inform"><div class="panel-leader-board__item-key"><div class="panel-leader-board__item-key__place  opacity">7</div></div><div class="panel-leader-board__item-block"><svg class="flag flag-pk"><use xlink:href="/profile/images/flags.svg#flag-pk"></use></svg><div class="panel-leader-board__item-avatar"><svg class="icon-avatar-default"><use xlink:href="/profile/images/spritemap.svg#icon-avatar-default"></use></svg></div></div><div class="panel-leader-board__item-name">' +
+                    '<div class="panel-leader-board__item-inform"><div class="panel-leader-board__item-key"><div class="panel-leader-board__item-key__place  opacity">7</div></div><div class="panel-leader-board__item-block"><svg class="flag flag-in"><use xlink:href="/profile/images/flags.svg#flag-in"></use></svg><div class="panel-leader-board__item-avatar"><svg class="icon-avatar-default"><use xlink:href="/profile/images/spritemap.svg#icon-avatar-default"></use></svg></div></div><div class="panel-leader-board__item-name">' +
                     lname +
                     '</div></div><div class="panel-leader-board__item-money --green">' +
                     lprofit +
@@ -451,7 +454,7 @@ setInterval(function () {
                 document.getElementsByClassName(
                     "panel-leader-board__item"
                 )[7].innerHTML =
-                    '<div class="panel-leader-board__item-inform"><div class="panel-leader-board__item-key"><div class="panel-leader-board__item-key__place  opacity">8</div></div><div class="panel-leader-board__item-block"><svg class="flag flag-pk"><use xlink:href="/profile/images/flags.svg#flag-pk"></use></svg><div class="panel-leader-board__item-avatar"><svg class="icon-avatar-default"><use xlink:href="/profile/images/spritemap.svg#icon-avatar-default"></use></svg></div></div><div class="panel-leader-board__item-name">' +
+                    '<div class="panel-leader-board__item-inform"><div class="panel-leader-board__item-key"><div class="panel-leader-board__item-key__place  opacity">8</div></div><div class="panel-leader-board__item-block"><svg class="flag flag-in"><use xlink:href="/profile/images/flags.svg#flag-in"></use></svg><div class="panel-leader-board__item-avatar"><svg class="icon-avatar-default"><use xlink:href="/profile/images/spritemap.svg#icon-avatar-default"></use></svg></div></div><div class="panel-leader-board__item-name">' +
                     lname +
                     '</div></div><div class="panel-leader-board__item-money --green">' +
                     lprofit +
@@ -462,7 +465,7 @@ setInterval(function () {
                 document.getElementsByClassName(
                     "panel-leader-board__item"
                 )[8].innerHTML =
-                    '<div class="panel-leader-board__item-inform"><div class="panel-leader-board__item-key"><div class="panel-leader-board__item-key__place  opacity">9</div></div><div class="panel-leader-board__item-block"><svg class="flag flag-pk"><use xlink:href="/profile/images/flags.svg#flag-pk"></use></svg><div class="panel-leader-board__item-avatar"><svg class="icon-avatar-default"><use xlink:href="/profile/images/spritemap.svg#icon-avatar-default"></use></svg></div></div><div class="panel-leader-board__item-name">' +
+                    '<div class="panel-leader-board__item-inform"><div class="panel-leader-board__item-key"><div class="panel-leader-board__item-key__place  opacity">9</div></div><div class="panel-leader-board__item-block"><svg class="flag flag-in"><use xlink:href="/profile/images/flags.svg#flag-in"></use></svg><div class="panel-leader-board__item-avatar"><svg class="icon-avatar-default"><use xlink:href="/profile/images/spritemap.svg#icon-avatar-default"></use></svg></div></div><div class="panel-leader-board__item-name">' +
                     lname +
                     '</div></div><div class="panel-leader-board__item-money --green">' +
                     lprofit +
@@ -473,7 +476,7 @@ setInterval(function () {
                 document.getElementsByClassName(
                     "panel-leader-board__item"
                 )[9].innerHTML =
-                    '<div class="panel-leader-board__item-inform"><div class="panel-leader-board__item-key"><div class="panel-leader-board__item-key__place  opacity">10</div></div><div class="panel-leader-board__item-block"><svg class="flag flag-pk"><use xlink:href="/profile/images/flags.svg#flag-pk"></use></svg><div class="panel-leader-board__item-avatar"><svg class="icon-avatar-default"><use xlink:href="/profile/images/spritemap.svg#icon-avatar-default"></use></svg></div></div><div class="panel-leader-board__item-name">' +
+                    '<div class="panel-leader-board__item-inform"><div class="panel-leader-board__item-key"><div class="panel-leader-board__item-key__place  opacity">10</div></div><div class="panel-leader-board__item-block"><svg class="flag flag-in"><use xlink:href="/profile/images/flags.svg#flag-in"></use></svg><div class="panel-leader-board__item-avatar"><svg class="icon-avatar-default"><use xlink:href="/profile/images/spritemap.svg#icon-avatar-default"></use></svg></div></div><div class="panel-leader-board__item-name">' +
                     lname +
                     '</div></div><div class="panel-leader-board__item-money --green">' +
                     lprofit +
@@ -484,7 +487,7 @@ setInterval(function () {
                 document.getElementsByClassName(
                     "panel-leader-board__item"
                 )[10].innerHTML =
-                    '<div class="panel-leader-board__item-inform"><div class="panel-leader-board__item-key"><div class="panel-leader-board__item-key__place  opacity">11</div></div><div class="panel-leader-board__item-block"><svg class="flag flag-pk"><use xlink:href="/profile/images/flags.svg#flag-pk"></use></svg><div class="panel-leader-board__item-avatar"><svg class="icon-avatar-default"><use xlink:href="/profile/images/spritemap.svg#icon-avatar-default"></use></svg></div></div><div class="panel-leader-board__item-name">' +
+                    '<div class="panel-leader-board__item-inform"><div class="panel-leader-board__item-key"><div class="panel-leader-board__item-key__place  opacity">11</div></div><div class="panel-leader-board__item-block"><svg class="flag flag-in"><use xlink:href="/profile/images/flags.svg#flag-in"></use></svg><div class="panel-leader-board__item-avatar"><svg class="icon-avatar-default"><use xlink:href="/profile/images/spritemap.svg#icon-avatar-default"></use></svg></div></div><div class="panel-leader-board__item-name">' +
                     lname +
                     '</div></div><div class="panel-leader-board__item-money --green">' +
                     lprofit +
@@ -495,7 +498,7 @@ setInterval(function () {
                 document.getElementsByClassName(
                     "panel-leader-board__item"
                 )[11].innerHTML =
-                    '<div class="panel-leader-board__item-inform"><div class="panel-leader-board__item-key"><div class="panel-leader-board__item-key__place  opacity">12</div></div><div class="panel-leader-board__item-block"><svg class="flag flag-pk"><use xlink:href="/profile/images/flags.svg#flag-pk"></use></svg><div class="panel-leader-board__item-avatar"><svg class="icon-avatar-default"><use xlink:href="/profile/images/spritemap.svg#icon-avatar-default"></use></svg></div></div><div class="panel-leader-board__item-name">' +
+                    '<div class="panel-leader-board__item-inform"><div class="panel-leader-board__item-key"><div class="panel-leader-board__item-key__place  opacity">12</div></div><div class="panel-leader-board__item-block"><svg class="flag flag-in"><use xlink:href="/profile/images/flags.svg#flag-in"></use></svg><div class="panel-leader-board__item-avatar"><svg class="icon-avatar-default"><use xlink:href="/profile/images/spritemap.svg#icon-avatar-default"></use></svg></div></div><div class="panel-leader-board__item-name">' +
                     lname +
                     '</div></div><div class="panel-leader-board__item-money --green">' +
                     lprofit +
@@ -506,7 +509,7 @@ setInterval(function () {
                 document.getElementsByClassName(
                     "panel-leader-board__item"
                 )[12].innerHTML =
-                    '<div class="panel-leader-board__item-inform"><div class="panel-leader-board__item-key"><div class="panel-leader-board__item-key__place  opacity">13</div></div><div class="panel-leader-board__item-block"><svg class="flag flag-pk"><use xlink:href="/profile/images/flags.svg#flag-pk"></use></svg><div class="panel-leader-board__item-avatar"><svg class="icon-avatar-default"><use xlink:href="/profile/images/spritemap.svg#icon-avatar-default"></use></svg></div></div><div class="panel-leader-board__item-name">' +
+                    '<div class="panel-leader-board__item-inform"><div class="panel-leader-board__item-key"><div class="panel-leader-board__item-key__place  opacity">13</div></div><div class="panel-leader-board__item-block"><svg class="flag flag-in"><use xlink:href="/profile/images/flags.svg#flag-in"></use></svg><div class="panel-leader-board__item-avatar"><svg class="icon-avatar-default"><use xlink:href="/profile/images/spritemap.svg#icon-avatar-default"></use></svg></div></div><div class="panel-leader-board__item-name">' +
                     lname +
                     '</div></div><div class="panel-leader-board__item-money --green">' +
                     lprofit +
@@ -517,7 +520,7 @@ setInterval(function () {
                 document.getElementsByClassName(
                     "panel-leader-board__item"
                 )[13].innerHTML =
-                    '<div class="panel-leader-board__item-inform"><div class="panel-leader-board__item-key"><div class="panel-leader-board__item-key__place  opacity">14</div></div><div class="panel-leader-board__item-block"><svg class="flag flag-pk"><use xlink:href="/profile/images/flags.svg#flag-pk"></use></svg><div class="panel-leader-board__item-avatar"><svg class="icon-avatar-default"><use xlink:href="/profile/images/spritemap.svg#icon-avatar-default"></use></svg></div></div><div class="panel-leader-board__item-name">' +
+                    '<div class="panel-leader-board__item-inform"><div class="panel-leader-board__item-key"><div class="panel-leader-board__item-key__place  opacity">14</div></div><div class="panel-leader-board__item-block"><svg class="flag flag-in"><use xlink:href="/profile/images/flags.svg#flag-in"></use></svg><div class="panel-leader-board__item-avatar"><svg class="icon-avatar-default"><use xlink:href="/profile/images/spritemap.svg#icon-avatar-default"></use></svg></div></div><div class="panel-leader-board__item-name">' +
                     lname +
                     '</div></div><div class="panel-leader-board__item-money --green">' +
                     lprofit +
@@ -528,7 +531,7 @@ setInterval(function () {
                 document.getElementsByClassName(
                     "panel-leader-board__item"
                 )[14].innerHTML =
-                    '<div class="panel-leader-board__item-inform"><div class="panel-leader-board__item-key"><div class="panel-leader-board__item-key__place  opacity">15</div></div><div class="panel-leader-board__item-block"><svg class="flag flag-pk"><use xlink:href="/profile/images/flags.svg#flag-pk"></use></svg><div class="panel-leader-board__item-avatar"><svg class="icon-avatar-default"><use xlink:href="/profile/images/spritemap.svg#icon-avatar-default"></use></svg></div></div><div class="panel-leader-board__item-name">' +
+                    '<div class="panel-leader-board__item-inform"><div class="panel-leader-board__item-key"><div class="panel-leader-board__item-key__place  opacity">15</div></div><div class="panel-leader-board__item-block"><svg class="flag flag-in"><use xlink:href="/profile/images/flags.svg#flag-in"></use></svg><div class="panel-leader-board__item-avatar"><svg class="icon-avatar-default"><use xlink:href="/profile/images/spritemap.svg#icon-avatar-default"></use></svg></div></div><div class="panel-leader-board__item-name">' +
                     lname +
                     '</div></div><div class="panel-leader-board__item-money --green">' +
                     lprofit +
@@ -539,7 +542,7 @@ setInterval(function () {
                 document.getElementsByClassName(
                     "panel-leader-board__item"
                 )[15].innerHTML =
-                    '<div class="panel-leader-board__item-inform"><div class="panel-leader-board__item-key"><div class="panel-leader-board__item-key__place  opacity">16</div></div><div class="panel-leader-board__item-block"><svg class="flag flag-pk"><use xlink:href="/profile/images/flags.svg#flag-pk"></use></svg><div class="panel-leader-board__item-avatar"><svg class="icon-avatar-default"><use xlink:href="/profile/images/spritemap.svg#icon-avatar-default"></use></svg></div></div><div class="panel-leader-board__item-name">' +
+                    '<div class="panel-leader-board__item-inform"><div class="panel-leader-board__item-key"><div class="panel-leader-board__item-key__place  opacity">16</div></div><div class="panel-leader-board__item-block"><svg class="flag flag-in"><use xlink:href="/profile/images/flags.svg#flag-in"></use></svg><div class="panel-leader-board__item-avatar"><svg class="icon-avatar-default"><use xlink:href="/profile/images/spritemap.svg#icon-avatar-default"></use></svg></div></div><div class="panel-leader-board__item-name">' +
                     lname +
                     '</div></div><div class="panel-leader-board__item-money --green">' +
                     lprofit +
@@ -550,7 +553,7 @@ setInterval(function () {
                 document.getElementsByClassName(
                     "panel-leader-board__item"
                 )[16].innerHTML =
-                    '<div class="panel-leader-board__item-inform"><div class="panel-leader-board__item-key"><div class="panel-leader-board__item-key__place  opacity">17</div></div><div class="panel-leader-board__item-block"><svg class="flag flag-pk"><use xlink:href="/profile/images/flags.svg#flag-pk"></use></svg><div class="panel-leader-board__item-avatar"><svg class="icon-avatar-default"><use xlink:href="/profile/images/spritemap.svg#icon-avatar-default"></use></svg></div></div><div class="panel-leader-board__item-name">' +
+                    '<div class="panel-leader-board__item-inform"><div class="panel-leader-board__item-key"><div class="panel-leader-board__item-key__place  opacity">17</div></div><div class="panel-leader-board__item-block"><svg class="flag flag-in"><use xlink:href="/profile/images/flags.svg#flag-in"></use></svg><div class="panel-leader-board__item-avatar"><svg class="icon-avatar-default"><use xlink:href="/profile/images/spritemap.svg#icon-avatar-default"></use></svg></div></div><div class="panel-leader-board__item-name">' +
                     lname +
                     '</div></div><div class="panel-leader-board__item-money --green">' +
                     lprofit +
@@ -561,7 +564,7 @@ setInterval(function () {
                 document.getElementsByClassName(
                     "panel-leader-board__item"
                 )[17].innerHTML =
-                    '<div class="panel-leader-board__item-inform"><div class="panel-leader-board__item-key"><div class="panel-leader-board__item-key__place  opacity">18</div></div><div class="panel-leader-board__item-block"><svg class="flag flag-pk"><use xlink:href="/profile/images/flags.svg#flag-pk"></use></svg><div class="panel-leader-board__item-avatar"><svg class="icon-avatar-default"><use xlink:href="/profile/images/spritemap.svg#icon-avatar-default"></use></svg></div></div><div class="panel-leader-board__item-name">' +
+                    '<div class="panel-leader-board__item-inform"><div class="panel-leader-board__item-key"><div class="panel-leader-board__item-key__place  opacity">18</div></div><div class="panel-leader-board__item-block"><svg class="flag flag-in"><use xlink:href="/profile/images/flags.svg#flag-in"></use></svg><div class="panel-leader-board__item-avatar"><svg class="icon-avatar-default"><use xlink:href="/profile/images/spritemap.svg#icon-avatar-default"></use></svg></div></div><div class="panel-leader-board__item-name">' +
                     lname +
                     '</div></div><div class="panel-leader-board__item-money --green">' +
                     lprofit +
@@ -572,7 +575,7 @@ setInterval(function () {
                 document.getElementsByClassName(
                     "panel-leader-board__item"
                 )[18].innerHTML =
-                    '<div class="panel-leader-board__item-inform"><div class="panel-leader-board__item-key"><div class="panel-leader-board__item-key__place  opacity">19</div></div><div class="panel-leader-board__item-block"><svg class="flag flag-pk"><use xlink:href="/profile/images/flags.svg#flag-pk"></use></svg><div class="panel-leader-board__item-avatar"><svg class="icon-avatar-default"><use xlink:href="/profile/images/spritemap.svg#icon-avatar-default"></use></svg></div></div><div class="panel-leader-board__item-name">' +
+                    '<div class="panel-leader-board__item-inform"><div class="panel-leader-board__item-key"><div class="panel-leader-board__item-key__place  opacity">19</div></div><div class="panel-leader-board__item-block"><svg class="flag flag-in"><use xlink:href="/profile/images/flags.svg#flag-in"></use></svg><div class="panel-leader-board__item-avatar"><svg class="icon-avatar-default"><use xlink:href="/profile/images/spritemap.svg#icon-avatar-default"></use></svg></div></div><div class="panel-leader-board__item-name">' +
                     lname +
                     '</div></div><div class="panel-leader-board__item-money --green">' +
                     lprofit +
@@ -583,7 +586,7 @@ setInterval(function () {
                 document.getElementsByClassName(
                     "panel-leader-board__item"
                 )[19].innerHTML =
-                    '<div class="panel-leader-board__item-inform"><div class="panel-leader-board__item-key"><div class="panel-leader-board__item-key__place  opacity">20</div></div><div class="panel-leader-board__item-block"><svg class="flag flag-pk"><use xlink:href="/profile/images/flags.svg#flag-pk"></use></svg><div class="panel-leader-board__item-avatar"><svg class="icon-avatar-default"><use xlink:href="/profile/images/spritemap.svg#icon-avatar-default"></use></svg></div></div><div class="panel-leader-board__item-name">' +
+                    '<div class="panel-leader-board__item-inform"><div class="panel-leader-board__item-key"><div class="panel-leader-board__item-key__place  opacity">20</div></div><div class="panel-leader-board__item-block"><svg class="flag flag-in"><use xlink:href="/profile/images/flags.svg#flag-in"></use></svg><div class="panel-leader-board__item-avatar"><svg class="icon-avatar-default"><use xlink:href="/profile/images/spritemap.svg#icon-avatar-default"></use></svg></div></div><div class="panel-leader-board__item-name">' +
                     lname +
                     '</div></div><div class="panel-leader-board__item-money --green">' +
                     lprofit +
@@ -592,3 +595,5 @@ setInterval(function () {
         }
     }
 }, 1000);
+
+
